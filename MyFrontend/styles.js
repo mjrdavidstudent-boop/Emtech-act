@@ -73,6 +73,35 @@ const Styles = StyleSheet.create({
     color: '#333',
     marginBottom: 10,
   },
+
+userBox: {
+  backgroundColor: '#fff',
+  padding: 15,
+  borderRadius: 10,
+  marginBottom: 15,
+  shadowColor: '#000',
+  shadowOffset: { width: 0, height: 2 },
+  shadowOpacity: 0.1,
+  shadowRadius: 3,
+  elevation: 2,
+  },
+
+  userInfo: {
+  fontSize: 16,
+  color: 'black',
+  textAlign: 'center',
+  marginBottom: 5,
+  },
+
+  userTitle: {
+  fontSize: 24,
+  fontWeight: 'bold',
+  color: 'black',
+  marginBottom: 20,
+  marginTop: 10,  
+  textAlign: 'center',
+  }
+
 });
 
 export default Styles;

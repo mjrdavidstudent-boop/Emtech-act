@@ -12,9 +12,15 @@ export default function Homepage({navigation}) {
             <View style={Styles.buttonWrapper}> 
                 <Button
                     title="Register"
-                    onPress={() => navigation.navigate('Register')}
-                />
+                    onPress={() => navigation.navigate('Register')}/>
             </View>
+
+            <View>
+                <Button
+                    title="View User"
+                    onPress={() => navigation.navigate('UserList')}/>
+            </View>
+
         </View>
     );
     
