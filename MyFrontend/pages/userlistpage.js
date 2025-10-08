@@ -1,4 +1,4 @@
-import {View, Text, Button} from "react-native";
+import {View, Text, Button, Alert} from "react-native";
 import axios from "axios";
 import { FlatList } from "react-native-web";
 import {useState,useEffect } from "react";
@@ -17,7 +17,34 @@ export default function userlistpage({navigation}) {
             console.log(err);
         });
     },[]
-    );  
+    );
+
+    const handleEdit = (user) => {
+        navigation.navigate("EditUser", {user});
+    }
+
+    const handleDelete = (id) => {
+    Alert.alert(
+        "Confirm Delete",
+        "Are you sure you want to delete this user?",
+        ({ text: "Cancel", style: "cancel" },
+        {
+        text: "Delete",
+        style: "destructive",
+        onPress: () => {
+            axios
+            .delete(`http://127.0.0.1:8000/registration/api/users/${id}/`)
+            .then((res) => {
+            Alert.alert("Success", "User deleted successfully");
+            })
+            .catch((err) => {
+            console.log(err);
+            Alert.alert("Error", "Failed to delete user");
+            });
+        },
+        })
+    );
+    };
 
     return (
         <View>
@@ -31,6 +58,14 @@ export default function userlistpage({navigation}) {
                     <Text style={Styles.userInfo}>Lastname: {item.last_name}</Text>
                     <Text style={Styles.userInfo}>Email: {item.email}</Text>
                     <Text style={Styles.userInfo}>Gender: {item.gender}</Text>
+                    <View>
+                        <Button title="Edit"
+                        color="#0011ffa4"
+                        onPress={() => handleEdit(item)} />
+                        <Button title="Delete"
+                        color="#ee1f1fff"
+                        onPress={() => handleDelete(item.id)}/>
+                    </View>
                 </View>
             )}/>
         </View>
